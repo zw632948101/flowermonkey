@@ -1,0 +1,217 @@
+2020-04-18 10:16:04,222 - flowerMonkey.py - flowerMonkey - INFO - __init__() -  ########################################start############################################
+2020-04-18 10:16:04,223 - flowerMonkey.py - flowerMonkey - INFO - __init__() -  Phone number: 13227842224
+2020-04-18 10:16:04,224 - flowerMonkey.py - flowerMonkey - INFO - __init__() -  ###########################start to init device#############################################
+2020-04-18 10:16:04,224 - flowerMonkey.py - flowerMonkey - INFO - __init__() -  device id: 7c04826
+2020-04-18 10:16:04,224 - flowerMonkey.py - flowerMonkey - INFO - __init__() -  package name: com.dnkj.chaseflower
+2020-04-18 10:16:04,224 - flowerMonkey.py - flowerMonkey - INFO - run() -  ________execute monkey___________
+2020-04-18 10:16:04,224 - flowerMonkey.py - flowerMonkey - INFO - target() -  Thread started
+2020-04-18 10:16:04,225 - flowerMonkey.py - flowerMonkey - INFO - monkey_test() -  file_path: E:\ProjectPy\flowerMonkey\monkey\flowerlog\monkeyResult_20200418_101604.txt
+2020-04-18 10:16:04,225 - flowerMonkey.py - flowerMonkey - INFO - monkey_test() -  start to execute monkey
+2020-04-18 10:16:04,225 - flowerMonkey.py - flowerMonkey - INFO - monkey_test() -  adb -s 7c04826 shell "monkey -p com.dnkj.chaseflower -s  1530 --pct-touch 50  --pct-trackball 20 --pct-majornav 10 --pct-appswitch 10 --pct-anyevent 10 --ignore-crashes --ignore-timeouts --ignore-security-exceptions --ignore-native-crashes --monitor-native-crashes -v -v -v --throttle 300 5000 2>/sdcard/error.txt 1>/sdcard/info.txt"
+              
+2020-04-18 10:16:04,225 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check if the APP stays on the same page.
+2020-04-18 10:16:04,226 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:04,796 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:16:04,797 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:16:06,800 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:16:06,944 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:16:09,065 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:16:09,065 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:16:09,798 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:09,991 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:16:09,991 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:16:14,992 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:15,123 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:16:20,125 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:20,321 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:16:25,322 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:25,498 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 4 times.
+2020-04-18 10:16:30,499 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:30,668 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 5 times.
+2020-04-18 10:16:30,668 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Record 10 times when the APP stays on the same page, and close the APP.
+2020-04-18 10:16:30,668 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  am force-stop com.dnkj.chaseflower
+2020-04-18 10:16:35,677 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:35,816 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:16:35,816 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:16:40,817 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:41,056 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:16:41,056 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:16:41,156 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:16:41,351 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:16:43,496 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:16:43,496 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:16:46,057 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:46,196 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:16:51,197 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:51,327 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:16:56,328 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:16:56,520 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:16:56,521 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:01,522 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:01,718 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:17:06,719 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:06,907 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:06,908 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:11,909 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:12,045 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:17:15,569 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:17:15,923 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:17:17,046 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:17,155 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:17,155 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:18,044 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:17:18,044 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:17:22,156 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:22,294 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:17:27,295 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:27,428 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:27,428 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:32,430 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:32,544 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:32,544 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:37,545 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:37,692 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:37,692 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:42,693 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:42,830 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:42,830 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:47,831 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:47,966 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:17:47,966 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:17:50,123 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:17:50,395 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:17:52,497 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:17:52,497 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:17:52,968 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:53,060 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:17:58,061 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:17:58,271 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:18:03,273 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:03,417 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 4 times.
+2020-04-18 10:18:08,418 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:08,520 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 5 times.
+2020-04-18 10:18:08,521 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Record 10 times when the APP stays on the same page, and close the APP.
+2020-04-18 10:18:08,521 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  am force-stop com.dnkj.chaseflower
+2020-04-18 10:18:13,529 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:13,701 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:18:13,701 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:18:18,702 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:18,888 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:18:23,889 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:24,025 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:18:24,025 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:18:24,608 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:18:24,867 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:18:27,106 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:18:27,107 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:18:29,026 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:29,217 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:18:34,219 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:34,379 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:18:39,380 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:39,504 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:18:39,504 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:18:44,506 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:44,630 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:18:49,631 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:49,778 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:18:54,779 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:18:54,883 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 4 times.
+2020-04-18 10:18:59,267 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:18:59,497 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:18:59,884 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:00,026 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:19:00,026 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:19:01,636 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:19:01,636 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:19:05,026 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:05,160 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:19:05,160 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:19:10,161 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:10,294 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:19:15,295 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:15,448 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:19:20,449 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:20,604 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 4 times.
+2020-04-18 10:19:25,605 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:25,737 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:19:25,737 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:19:30,739 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:30,901 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:19:30,901 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:19:33,697 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:19:34,040 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:19:35,902 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:36,037 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:19:36,206 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:19:36,206 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:19:41,039 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:41,137 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:19:46,138 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:46,343 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 4 times.
+2020-04-18 10:19:51,344 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:51,451 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:19:51,451 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:19:56,451 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:19:56,580 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:19:56,580 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:01,581 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:01,729 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:20:06,730 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:06,861 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:20:08,281 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:20:08,594 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:20:10,731 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:20:10,731 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:20:11,862 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:11,997 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 4 times.
+2020-04-18 10:20:16,999 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:17,103 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:20:17,104 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:22,105 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:22,260 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:20:22,260 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:27,261 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:27,412 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:20:32,413 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:32,589 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:20:32,589 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:37,590 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:37,760 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:20:37,760 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:42,761 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:42,795 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:20:42,884 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:20:42,884 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:43,115 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:20:45,247 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:20:45,247 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:20:47,885 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:48,043 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:20:48,044 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:20:53,045 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:53,211 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:20:58,212 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:20:58,372 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:21:03,373 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:03,542 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:21:03,542 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:21:08,543 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:08,705 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:21:08,705 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:21:13,706 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:13,859 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.
+2020-04-18 10:21:17,326 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: am force-stop com.dnkj.chaseflower
+2020-04-18 10:21:17,634 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  start to execute: shell am start -n com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity
+2020-04-18 10:21:18,860 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:18,953 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 3 times.
+2020-04-18 10:21:19,736 - flowerMonkey.py - flowerMonkey - INFO - open_app() -  launch activity: com.dnkj.chaseflower/com.dnkj.chaseflower.activity.SplashActivity successfully
+2020-04-18 10:21:19,736 - flowerMonkey.py - flowerMonkey - INFO - check_app() -  ________Waiting for entry detection:30s___________
+2020-04-18 10:21:23,954 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:24,073 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:21:24,073 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:21:29,075 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:29,214 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP does not stay on the same page, and reset the record times.
+2020-04-18 10:21:29,215 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 1 times.
+2020-04-18 10:21:34,216 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  dumpsys window w | findstr \/ | findstr name=
+2020-04-18 10:21:34,358 - flowerMonkey.py - flowerMonkey - INFO - checkapp_activity() -  Check that the APP stays on the same page: 2 times.

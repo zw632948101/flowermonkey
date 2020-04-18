@@ -1,0 +1,11 @@
+#第一行是运行的环境
+run: 'WORLD_QA'
+
+# QA_API DEV_API
+updateActionAPI: 'QA_API'
+#执行case的账号
+account:
+  username: 632948101@qq.com
+  password: 123456
+ACTIVITY_NAME: com.dnkj.chaseflower.activity.SplashActivity
+PACKAGE_NAME: com.dnkj.chaseflower
