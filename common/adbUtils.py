@@ -6,8 +6,8 @@ import platform
 import subprocess
 import re
 from time import sleep
-import random
 from common import keycode
+from common.Log import Log
 
 PATH = lambda p: os.path.abspath(p)
 
@@ -17,6 +17,7 @@ if system is "Windows":
     find_util = "findstr"
 else:
     find_util = "grep"
+
 
 # 判断是否设置环境变量ANDROID_HOME
 # if "ANDROID_HOME" in os.environ:
@@ -36,6 +37,7 @@ class ADB(object):
 
     def __init__(self, device_id=""):
         self.find_util = find_util
+        self.L = Log('ADB', level='INFO')
         if device_id == "":
             self.device_id = ""
         else:
@@ -44,11 +46,13 @@ class ADB(object):
     # adb命令
     def adb(self, args):
         cmd = "adb %s %s" % (self.device_id, str(args))
+        self.L.logger.info(cmd)
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # adb shell命令
     def shell(self, args):
         cmd = "%s %s shell %s" % ("adb", self.device_id, str(args))
+        self.L.logger.info(cmd)
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def getDeviceState(self):

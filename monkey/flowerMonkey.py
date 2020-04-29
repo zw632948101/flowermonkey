@@ -56,8 +56,8 @@ class Monkey(object):
             self.find_util = "grep"
 
     def open_app(self):
-        self.adb.shell("am start -n %s" % "com.github.uiautomator/.MainActivity")
-        sleep(2)
+        # self.adb.shell("am start -n %s" % "com.github.uiautomator/.MainActivity")
+        # sleep(2)
         retry_count = 0
         retry_flag = True
         log.logger.info("start to execute: %s" % ("am force-stop " + PACKAGE_NAME))
@@ -113,8 +113,9 @@ class Monkey(object):
             if activity_name == app_activity:
                 activity_num += 1
                 log.logger.info("Check that the APP stays on the same page: %s times." % activity_num)
+                log.logger.info("Check that the APP stays on the same page: %s" % app_activity)
             if activity_num == 5:
-                log.logger.info("Record 10 times when the APP stays on the same page, and close the APP.")
+                log.logger.info("Record 5 times when the APP stays on the same page, and close the APP.")
                 log.logger.info("am force-stop %s" % PACKAGE_NAME)
                 self.adb.quitApp(packageName=PACKAGE_NAME)
             sleep(60)
@@ -156,7 +157,7 @@ class Monkey(object):
         :return: None
         """
         png_name = "%s_%s.png" % (function_name, tt.get_standardtime_by_offset(formats="%Y-%m-%d_%H:%M:%S"))
-        self.adb.cmd("shell screencap -p /sdcard/%s" % png_name)
+        self.adb.shell("screencap -p /sdcard/%s" % png_name)
         if os.environ.get("WORKSPACE"):
             local_png_name = os.path.join(os.environ.get("WORKSPACE"), png_name)
         else:
@@ -269,7 +270,7 @@ class Monkey(object):
     def copy_anr_files(self, crashfiles="/data/anr", crashlogfile="floweranrlog", appName="flower"):
         """将当天的ANR(无响应)日志保存到本地"""
         # 获取ANR(无响应)文件列表
-        anr_list = str(self.adb.cmd(("shell ls %s" % crashfiles)).stdout.read())
+        anr_list = str(self.adb.shell(("ls %s" % crashfiles)).stdout.read())
         anr_list = anr_list.split("\r\n")
         log.logger.info("ANR日志列表")
         log.logger.info(anr_list)
@@ -308,7 +309,7 @@ class Monkey(object):
                 log.logger.info(now)
                 # if now in nowDate and crashHour>=nowHour:
                 if now in nowDate:
-                    self.adb.cmd(" pull %s" % crashfiles + "/%s " % anr_list[i] + " %s" % file_path)
+                    self.adb.adb(" pull %s" % crashfiles + "/%s " % anr_list[i] + " %s" % file_path)
                     log.logger.info(" pull %s" % crashfiles + "/%s " % anr_list[i] + " %s" % file_path)
         log.logger.info("结束拷贝")
 
@@ -326,7 +327,7 @@ class Monkey(object):
         if not (os.path.exists(file_path)):
             file_bug_report = open(file_path, "w")
             file_bug_report.close()
-        self.adb.cmd("shell bugreport > %s" % file_path)
+        self.adb.shell("bugreport > %s" % file_path)
         sleep(30)
         chkbug_report = "java -jar %s %s" % (os.path.join(os.path.dirname(__file__), "chkbugreport.jar"), file_path)
         log.logger.info(chkbug_report)
@@ -360,7 +361,7 @@ class Monkey(object):
     def reboot_device(self):
         log.logger.info("reboot device")
         self.screenshot(self.get_current_function_name())
-        self.adb.cmd("reboot")
+        self.adb.adb("reboot")
         sleep(60)
 
     def do_command(self, cmd):
@@ -383,7 +384,8 @@ class Monkey(object):
 
     def connect_client(self):
         connected_devices = self.do_command('adb devices')
-        if ":" in self.device_id:  # 检查是否是无线连接方式
+        devices_id = connected_devices[1].split('\t') if connected_devices else None
+        if devices_id[0].find(':'):  # 检查是否是无线连接方式
             if self.check_client() == 0:  # 连接的设备中没有连接的设备时，执行连接设备
                 print('Not connected via Wi-Fi, ready to connect {}...'.format(self.device_id))
                 self.do_command('adb connect {}'.format(self.device_id))
@@ -394,7 +396,7 @@ class Monkey(object):
                 sleep(0.5)
                 self.do_command('adb connect {}'.format(self.device_id))
                 print('Connected to {}'.format(self.device_id))
-        elif self.device_id in connected_devices:
+        elif self.device_id in devices_id:
             print('Connect to {} via USB'.format(self.device_id))
         else:
             print('{} abnormal connection via USB'.format(self.device_id))
@@ -418,11 +420,11 @@ class Execommand(Monkey):
             while True:
                 try:
                     self.connect_client()
-                    self.open_app()
+                    # self.open_app()
                 except IndexError:
                     self.screenshot(self.get_current_function_name())
-                    self.open_app()
-                log.logger.info("________Waiting for entry detection:30s___________")
+                    # self.open_app()
+                log.logger.info("________Waiting for entry detection:60s___________")
                 sleep(60)
 
         log.logger.info("________execute monkey___________")
@@ -436,6 +438,7 @@ class Execommand(Monkey):
         for i in dist:
             i.join(timeout)
 
-# if __name__ == '__main__':
-#     Monkey = Execommand(event_count=3000000, device=sys.argv[1])
-#     print(Monkey.run(timeout=60 * 60 * 3))
+
+if __name__ == '__main__':
+    Monkey = Execommand(event_count=3000000, device='192.168.101.91:3333')
+    Monkey.run(3000)
