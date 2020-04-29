@@ -46,13 +46,13 @@ class ADB(object):
     # adb命令
     def adb(self, args):
         cmd = "adb %s %s" % (self.device_id, str(args))
-        self.L.logger.info(cmd)
+        # self.L.logger.info(cmd)
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # adb shell命令
     def shell(self, args):
         cmd = "%s %s shell %s" % ("adb", self.device_id, str(args))
-        self.L.logger.info(cmd)
+        # self.L.logger.info(cmd)
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def getDeviceState(self):
@@ -482,6 +482,15 @@ class ADB(object):
         """
         self.shell('/system/bin/screencap -p /sdcard/screenshot.png')
         self.adb('pull /sdcard/screenshot.png %s' % filepath)
+
+    def connect_devices(self, devices_id):
+        """
+        通过WiFi链接设备
+        :param devices_id:
+        :return:
+        """
+        self.adb('adb connect {}'.format(devices_id))
+        self.adb('adb disconnect {}'.format(devices_id))
 
 
 if __name__ == '__main__':

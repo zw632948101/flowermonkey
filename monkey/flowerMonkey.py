@@ -384,22 +384,36 @@ class Monkey(object):
 
     def connect_client(self):
         connected_devices = self.do_command('adb devices')
-        devices_id = connected_devices[1].split('\t') if connected_devices else None
-        if devices_id[0].find(':'):  # 检查是否是无线连接方式
-            if self.check_client() == 0:  # 连接的设备中没有连接的设备时，执行连接设备
-                print('Not connected via Wi-Fi, ready to connect {}...'.format(self.device_id))
-                self.do_command('adb connect {}'.format(self.device_id))
-                print('Connected to {}'.format(self.device_id))
-            elif self.check_client() == 2:
-                print('Wi-Fi connection is abnormal, try to reconnect {}'.format(self.device_id))
-                self.do_command('adb disconnect {}'.format(self.device_id))
-                sleep(0.5)
-                self.do_command('adb connect {}'.format(self.device_id))
-                print('Connected to {}'.format(self.device_id))
-        elif self.device_id in devices_id:
-            print('Connect to {} via USB'.format(self.device_id))
-        else:
-            print('{} abnormal connection via USB'.format(self.device_id))
+        devices_list = []
+        devices_id = []
+        for i in [i.split('\t') for i in connected_devices]:
+            if len(i) >= 2:
+                devices_list.append(i)
+                devices_id.append(i[0])
+        for devices, status in devices_list:
+            if devices == self.device_id:
+                if status.replace('\n', '') == 'unauthorized':
+                    log.logger.info("The {} equipment is not authorized, please try again after authorization".format(
+                        self.device_id))
+                elif status.replace('\n', '') == 'offline':
+                    log.logger.info("{} Device connection dropped, try to relink ...".format(self.device_id))
+                    if self.device_id.find(':'):
+                        log.logger.info('Not connected via Wi-Fi, ready to connect {}...'.format(self.device_id))
+                        self.adb.connect_devices(devices_id=self.device_id)
+                    else:
+                        log.logger.info(
+                            '{} abnormal connection via USB,Please check the USB link !'.format(self.device_id))
+                elif status.replace('\n', '') == 'device':
+                    log.logger.info('{} Device connection is normal'.format(self.device_id))
+                else:
+                    log.logger.info('{} abnormal connection via'.format(self.device_id))
+            if self.device_id not in devices_id:
+                log.logger.info('The {} device is disconnected.'.format(self.device_id))
+                if self.device_id.find(':'):
+                    log.logger.info('Not connected via Wi-Fi, ready to connect {}...'.format(self.device_id))
+                    self.adb.connect_devices(devices_id=self.device_id)
+                else:
+                    log.logger.info('{} abnormal connection via USB,Please check the USB link !'.format(self.device_id))
 
 
 class Execommand(Monkey):
@@ -439,6 +453,20 @@ class Execommand(Monkey):
             i.join(timeout)
 
 
-if __name__ == '__main__':
-    Monkey = Execommand(event_count=3000000, device='192.168.101.91:3333')
-    Monkey.run(3000)
+# if __name__ == '__main__':
+#     Monkey = Execommand(event_count=3000000, device='192.168.101.91:3333')
+#
+#
+#     def check_app():
+#         while True:
+#             try:
+#                 Monkey.connect_client()
+#                 # self.open_app()
+#             except IndexError:
+#                 Monkey.screenshot(Monkey.get_current_function_name())
+#                 # self.open_app()
+#             log.logger.info("________Waiting for entry detection:60s___________")
+#             sleep(5)
+#
+#
+#     check_app()

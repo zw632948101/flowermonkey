@@ -11,5 +11,5 @@ import sys
 if __name__ == '__main__':
     from monkey.flowerMonkey import Execommand
 
-    Monkey = Execommand(event_count=5000, device='7c04826')
+    Monkey = Execommand(event_count=5000, device=sys.argv[0])
     print(Monkey.run(timeout=60 * 60 * 3))
