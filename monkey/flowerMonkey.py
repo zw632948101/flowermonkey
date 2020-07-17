@@ -420,7 +420,7 @@ class Execommand(Monkey):
     def __init__(self, event_count, device, monkeyLog="flowerlog"):
         super(Execommand, self).__init__(event_count, device)
         self.process = None
-        self.monkeyLog = monkeyLog
+        self.monkeyLog = '%s_%s.log' % (device, monkeyLog)
 
     def run(self, timeout):
         def target():
