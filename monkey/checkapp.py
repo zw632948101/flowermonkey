@@ -14,16 +14,15 @@ from common import log
 from common.RedisOperate import Redis
 from common.adbUtils import ADB
 
-PACKAGE_NAME = config.get('PACKAGE_NAME')
-ACTIVITY_NAME = config.get('ACTIVITY_NAME')
-
 
 class CheckApp(object):
     def __init__(self, device):
         self.adb = ADB(device)
         self.device_id = device
         self.device_key = "MONKEY:" + device
+        self.package_name = "PACKAGENAME:" + device
         self.rd = Redis()
+        self.pname = self.rd.get(self.package_name)
 
     @staticmethod
     def get_current_function_name():
@@ -59,40 +58,40 @@ class CheckApp(object):
         """
         retry_count = 0
         retry_flag = True
-        log.info("start to execute: %s" % ("am force-stop " + PACKAGE_NAME))
-        self.adb.shell("am force-stop " + PACKAGE_NAME).stdout.readlines()
+        log.info("start to execute: %s" % ("am force-stop " + self.pname))
+        self.adb.shell("am force-stop " + self.pname).stdout.readlines()
         while retry_count < 3 and retry_flag:
             log.info(
-                "start to execute: shell am start -n %s/%s" % (PACKAGE_NAME, ACTIVITY_NAME))
-            self.adb.shell("monkey -p %s -v 1" % (PACKAGE_NAME))
+                "start to execute: shell am start -n %s" % self.pname)
+            self.adb.shell("monkey -p %s -v 1" % (self.pname))
             # adb.startActivity("%s/%s" % (PACKAGE_NAME, ACTIVITY_NAME))
             sleep(2)
-            if PACKAGE_NAME not in self.adb.getCurrentPackageName():
-                log.info("start to launch activity: %s/%s" % (PACKAGE_NAME, ACTIVITY_NAME))
+            if self.pname not in self.adb.getCurrentPackageName():
+                log.info("start to launch activity: %s" % self.pname)
                 # 20181008  修复当下拉菜单挡住当前程序的问题
                 try:
-                    self.adb.shell("monkey -p %s -v 1" % (PACKAGE_NAME))
+                    self.adb.shell("monkey -p %s -v 1" % (self.pname))
                 except IndexError:
                     self.screenshot(self.get_current_function_name())
-                    self.adb.quitApp(PACKAGE_NAME)
+                    self.adb.quitApp(self.pname)
                 sleep(2)
-                if PACKAGE_NAME in self.adb.getCurrentPackageName():
+                if self.pname in self.adb.getCurrentPackageName():
                     log.info(
-                        "launch activity: %s/%s successfully" % (PACKAGE_NAME, ACTIVITY_NAME))
+                        "launch activity: %s successfully" % self.pname)
                     retry_flag = False
                 else:
                     log.error(
-                        "launch activity: %s/%s failed!" % (PACKAGE_NAME, ACTIVITY_NAME))
+                        "launch activity: %s failed!" % self.pname)
                     retry_count += 1
             else:
                 log.info(
-                    "launch activity: %s/%s successfully" % (PACKAGE_NAME, ACTIVITY_NAME))
+                    "launch activity: %s successfully" % self.pname)
                 retry_flag = False
         if not retry_flag:
             return True
         if retry_count == 3 and retry_flag:
-            log.error("failed to launch %s" % PACKAGE_NAME)
-            sys.exit("failed to launch %s" % PACKAGE_NAME)
+            log.error("failed to launch %s" % self.pname)
+            sys.exit("failed to launch %s" % self.pname)
 
     def checkapp_activity(self):
         """
@@ -113,10 +112,10 @@ class CheckApp(object):
             self.rd.set(activity_key, num)
             log.info("Check that the APP stays on the same page: %s times." % num)
             log.info("Check that the APP stays on the same page: %s" % app_activity)
-        if int(self.rd.get(activity_key)) == 5:
+        if int(self.rd.get(activity_key)) == config.get('ACTIVITY_NUM'):
             log.info("Record 5 times when the APP stays on the same page, and close the APP.")
-            log.info("am force-stop %s" % PACKAGE_NAME)
-            self.adb.quitApp(packageName=PACKAGE_NAME)
+            log.info("am force-stop %s" % self.pname)
+            self.adb.quitApp(packageName=self.pname)
             self.rd.set(activity_key, 0)
 
     def checkapp_music(self):
@@ -130,8 +129,8 @@ class CheckApp(object):
             if musicapp in config.get('BLACKLIST_PACKAGE'):
                 log.info("Close the application：%s" % musicapp)
                 self.adb.quitApp(musicapp)
-        if 'com.dnkj.worldfarm' in musicapp_list:
-            log.info("restart：com.dnkj.worldfarm")
+        if self.pname in musicapp_list:
+            log.info("restart：%s" % self.pname)
             self.open_app()
 
     def checkapp_monkey(self):

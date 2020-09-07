@@ -13,7 +13,7 @@ from common.Common import TimestampTransform as tt
 PATH = lambda p: os.path.abspath(p)
 # 判断系统类型，windows使用findstr，linux使用grep
 system = platform.system()
-if system is "Windows":
+if system == "Windows":
     find_util = "findstr"
 else:
     find_util = "grep"
@@ -36,6 +36,7 @@ class ADB(object):
     """
 
     def __init__(self, device_id=""):
+        super(ADB, self).__init__()
         self.find_util = find_util
         if device_id == "":
             self.device_id = ""
@@ -51,11 +52,7 @@ class ADB(object):
     # adb shell命令
     def shell(self, args):
         cmd = "%s %s shell %s" % ("adb", self.device_id, str(args))
-<<<<<<< HEAD
         log.debug(cmd)
-=======
-        # self.L.logger.info(cmd)
->>>>>>> parent of ece50b9... 优化执行脚本
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def getDeviceState(self):
@@ -95,7 +92,7 @@ class ADB(object):
         - packageName -: 应用包名
         usage: getPid("com.android.settings")
         """
-        if self.system is "Windows":
+        if system == "Windows":
             pidinfo = self.shell("ps | findstr %s$" % packageName).stdout.read()
         else:
             pidinfo = self.shell("ps | grep -w %s" % packageName).stdout.read()
@@ -252,7 +249,8 @@ class ADB(object):
         """
         thirdApp = []
         for packages in self.shell("pm list packages -3").stdout.readlines():
-            thirdApp.append(packages.split(":")[-1].splitlines()[0])
+            package = packages.decode('utf-8')
+            thirdApp.append(package.split(":")[-1].splitlines()[0])
 
         return thirdApp
 

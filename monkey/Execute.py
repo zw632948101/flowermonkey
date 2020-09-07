@@ -36,7 +36,6 @@ class Execommand(Monkey):
             log.info('Thread finished')
             return out
 
-        self.login_app(mobile)
         if not self.ca.checkapp_monkey():
             log.info("________execute monkey___________")
             thread = threading.Thread(target=target)

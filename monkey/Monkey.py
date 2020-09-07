@@ -22,6 +22,7 @@ from common.RedisOperate import Redis
 
 PACKAGE_NAME = config.get('PACKAGE_NAME')
 ACTIVITY_NAME = config.get('ACTIVITY_NAME')
+DEFAULT_PACKAGE_NAME = config.get('DEFAULT_PACKAGE_NAME')
 
 
 class Monkey(object):
@@ -35,7 +36,8 @@ class Monkey(object):
         self.adb = ADB(device)
         self.ca = CheckApp(device)
         self.r = Redis()
-        self.device_key = "MONKEY:" + device
+        self.device_key = "MONKEYLOG:" + device
+        self.package_name = "PACKAGENAME:" + device
         log.info(
             "########################################start############################################")
         self.now = tt.get_standardtime_by_offset(formats="_%Y%m%d_%H%M%S")
@@ -48,12 +50,22 @@ class Monkey(object):
             log.error("no device was found!")
             sys.exit("no device was found!")
         log.info("device id: %s" % self.device_id)
-        log.info("package name: %s" % PACKAGE_NAME)
         self.system = platform.system()
         if self.system == "Windows":
             self.find_util = "findstr"
         else:
             self.find_util = "grep"
+
+    def access_perform_monkey_package(self):
+        """
+        通过对比配置和系统安装包，如果存在多个时：1没有默认指定执行APP将从对比结果中随机取值，2有默认值时直接执行默认值
+        :return:
+        """
+        sys_package_list = self.adb.getThirdAppList()
+        intersection_package = list(set(PACKAGE_NAME).intersection(set(sys_package_list)))
+        if DEFAULT_PACKAGE_NAME in intersection_package:
+            return DEFAULT_PACKAGE_NAME
+        return random.choice(intersection_package)
 
     def login_app(self, mobile):
         """
@@ -88,13 +100,15 @@ class Monkey(object):
     def monkey_test(self):
         """执行monkey测试"""
         log.info("start to execute monkey")
+        package_name = self.access_perform_monkey_package()
+        self.r.set(self.package_name, package_name)
         seed = random.randint(1000, 100000)
         error_txt = self.device_id + '_' + str(tt.get_standardtime_by_offset(formats='%m%d%H%M')) + "_error.log"
         info_txt = self.device_id + '_' + str(tt.get_standardtime_by_offset(formats='%m%d%H%M')) + "_info.log"
-        self.r.lpush(self.device_key + 'LOG', error_txt, info_txt)
+        self.r.lpush(self.device_key, error_txt, info_txt)
         throttle = random.randint(3, 10) * 100
         cmd = """adb -s %s shell "monkey -p %s -s  %s --pct-touch 50 --pct-trackball 20 --pct-majornav 10 --pct-appswitch 10 --pct-anyevent 10 --ignore-crashes --ignore-timeouts --ignore-security-exceptions --ignore-native-crashes --monitor-native-crashes -v -v -v --throttle %s %s 2>/sdcard/%s 1>/sdcard/%s"
-              """ % (self.device_id, PACKAGE_NAME, seed, throttle, self.event_count, error_txt, info_txt)
+              """ % (self.device_id, package_name, seed, throttle, self.event_count, error_txt, info_txt)
         log.debug(cmd)
         return cmd
 
@@ -285,3 +299,8 @@ class Monkey(object):
                         return 2  # 设备连接且不在线
                 elif connected_devices.index(client) == device_num - 1:
                     return 0
+
+
+if __name__ == '__main__':
+    m = Monkey(5, '7c04826')
+    print(m.Access_perform_monkey_package())

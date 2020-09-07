@@ -3,14 +3,18 @@ which_project: &which_project flowerChaser
 RUN: &run
   projectName: *which_project
   SWEEP_SPACING: 30
+  ACTIVITY_NUM: 5
   BLACKLIST_PACKAGE:
     - com.netease.cloudmusic
     - com.meizu.media.music
     - com.android.mediacenter
 flowerChaser:
   <<: *run
-  ACTIVITY_NAME: com.dnkj.chaseflower.activity.SplashActivity
-  PACKAGE_NAME: com.dnkj.chaseflower
+  ACTIVITY_NAME:
+    - com.dnkj.chaseflower.activity.SplashActivity
+  PACKAGE_NAME:
+    - com.dnkj.chaseflower
+  DEFAULT_PACKAGE_NAME:
   MOBLIE:
     - 15388126080
     - 15388126081
