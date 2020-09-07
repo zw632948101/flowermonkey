@@ -7,18 +7,19 @@ __date__ = '2018/8/11'
 """
 
 import yaml
-import os
+from os.path import abspath, dirname
 
-from common.Log import Log
+from common import log
 
+def get_config(file_path=None):
+    if file_path is None:
+        file_path = dirname(abspath(__file__))
+        file_path = file_path + '/config.yaml'
 
-class Config(object):
-    L = Log('Config')
-
-    def __init__(self, name):
-        self.name = name
-        current_path = os.path.dirname(os.path.abspath(__file__))
-        settings = yaml.safe_load(open(current_path + "/" + name + ".yaml", encoding='utf-8'))
-        self.data = settings
-        # data = settings[env]
-        # self.L.logger.debug(self.data)
+    with open(file_path, encoding='utf-8') as f:
+        config = yaml.safe_load(f)
+        if config.get('which_project') in config.keys():
+            return config.get(config.get('which_project'))
+        else:
+            log.error('未选择项目配置!')
+            exit(0)

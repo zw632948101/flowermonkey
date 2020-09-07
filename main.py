@@ -6,10 +6,17 @@
 __author__: wei.zhang
 
 """
-import sys
 
 if __name__ == '__main__':
-    from monkey.flowerMonkey import Execommand
+    # from monkey.flowerExecute import Execommand
+    # #
+    # Monkey = Execommand(timeout=60, event_count=5000, device='CLB7N18709015438')
+    # Monkey.run(mobile="15388126080")
+    # from monkey.flowerExecute import Multi_device_execution
+    #
+    # Monkey = Multi_device_execution(event_count=500, timeout=60)
+    # Monkey.multi_device_run()
+    from monkey.monitorDevice import monitorDevice
 
-    Monkey = Execommand(event_count=5000, device=sys.argv[0])
-    print(Monkey.run(timeout=60 * 60 * 3))
+    m = monitorDevice()
+    m.custom_scheduler()

@@ -6,3 +6,8 @@
 __author__: wei.zhang
 
 """
+from common.log.Log import logger
+from .Config import *
+
+config = get_config()
+log = logger()

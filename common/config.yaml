@@ -1,11 +1,32 @@
-#第一行是运行的环境
-run: 'WORLD_QA'
+which_project: &which_project flowerChaser
 
-# QA_API DEV_API
-updateActionAPI: 'QA_API'
-#执行case的账号
-account:
-  username: 632948101@qq.com
-  password: 123456
-ACTIVITY_NAME: com.dnkj.chaseflower.activity.SplashActivity
-PACKAGE_NAME: com.dnkj.chaseflower
+RUN: &run
+  projectName: *which_project
+  SWEEP_SPACING: 30
+  BLACKLIST_PACKAGE:
+    - com.netease.cloudmusic
+    - com.meizu.media.music
+    - com.android.mediacenter
+flowerChaser:
+  <<: *run
+  ACTIVITY_NAME: com.dnkj.chaseflower.activity.SplashActivity
+  PACKAGE_NAME: com.dnkj.chaseflower
+  MOBLIE:
+    - 15388126080
+    - 15388126081
+    - 15388126082
+    - 15388126083
+    - 15388126084
+    - 15388126085
+    - 15388126086
+    - 15388126087
+    - 15388126088
+
+worldFarm:
+  <<: *run
+  account:
+    username: 632948101@qq.com
+    password: 123456
+  ACTIVITY_NAME: com.dnkj.chaseflower.activity.SplashActivity
+  PACKAGE_NAME: com.dnkj.chaseflower
+

@@ -7,10 +7,10 @@ import subprocess
 import re
 from time import sleep
 from common import keycode
-from common.Log import Log
+from common import log
+from common.Common import TimestampTransform as tt
 
 PATH = lambda p: os.path.abspath(p)
-
 # 判断系统类型，windows使用findstr，linux使用grep
 system = platform.system()
 if system is "Windows":
@@ -37,7 +37,6 @@ class ADB(object):
 
     def __init__(self, device_id=""):
         self.find_util = find_util
-        self.L = Log('ADB', level='INFO')
         if device_id == "":
             self.device_id = ""
         else:
@@ -46,13 +45,17 @@ class ADB(object):
     # adb命令
     def adb(self, args):
         cmd = "adb %s %s" % (self.device_id, str(args))
-        # self.L.logger.info(cmd)
+        log.debug(cmd)
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # adb shell命令
     def shell(self, args):
         cmd = "%s %s shell %s" % ("adb", self.device_id, str(args))
+<<<<<<< HEAD
+        log.debug(cmd)
+=======
         # self.L.logger.info(cmd)
+>>>>>>> parent of ece50b9... 优化执行脚本
         return subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     def getDeviceState(self):
@@ -125,6 +128,38 @@ class ADB(object):
         usage: quitApp("com.android.settings")
         """
         self.shell("am force-stop %s" % packageName)
+
+    def getBackgroundPackageList(self):
+        """
+        获取设备后台运行的包名列表
+        :return:
+        """
+        pattern = re.compile(r"[a-zA-Z0-9\.]+/.[a-zA-Z0-9\.]+")
+        out = self.shell(
+            "dumpsys window w | %s \/ | %s mTopActivityComponent=" % (self.find_util, self.find_util)).stdout.read()
+        out = out.decode('utf-8')
+        return [i.split('/')[0] for i in pattern.findall(out)]
+
+    def getRunBackgroundProcess(self):
+        """
+        获取当前设备后台运行进程
+        :return:
+        """
+        pattern = re.compile(r"com.[a-zA-Z0-9\.]+")
+        out = self.shell("ps -ef|%s com" % self.find_util).stdout.read()
+        out = out.decode('utf-8')
+        return pattern.findall(out)
+
+    def getRunMonkeyStatus(self):
+        """
+        获取当前设备是否有monkey运行
+        :return:
+        """
+        pattern = re.compile(r"\s\d+\s\s")
+        out = self.shell("ps -ef|%s monkey" % self.find_util).stdout.read()
+        out = out.decode('utf-8')
+        log.info(out)
+        return pattern.findall(out)
 
     def getFocusedPackageAndActivity(self):
         """
@@ -492,7 +527,11 @@ class ADB(object):
         self.adb('adb connect {}'.format(devices_id))
         self.adb('adb disconnect {}'.format(devices_id))
 
+    def pull_file(self, filename, filepath):
+        self.adb("pull /sdcard/%s %s" % (filename, filepath))
+        self.shell("rm -rf /sdcard/%s" % filename)
 
-if __name__ == '__main__':
-    adb = ADB()
-    print(adb.getCurrentActivity())
+#
+# if __name__ == '__main__':
+#     adb = ADB()
+#     print(adb.getRunMonkeyStatus())
