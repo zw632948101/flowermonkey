@@ -529,7 +529,7 @@ class ADB(object):
         self.adb("pull /sdcard/%s %s" % (filename, filepath))
         self.shell("rm -rf /sdcard/%s" % filename)
 
-#
-# if __name__ == '__main__':
-#     adb = ADB()
-#     print(adb.getRunMonkeyStatus())
+
+if __name__ == '__main__':
+    adb = ADB()
+    print(adb.getRunBackgroundProcess())

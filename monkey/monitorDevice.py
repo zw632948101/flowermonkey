@@ -104,15 +104,20 @@ class monitorDevice(object):
 
     def multi_device_run(self):
         for i in self.devicelist:
-            log.info(u"Execute device ID：%s" % i)
-            self.device_dict[i]["status"] = False
-            p = Process(target=self.run, args=(i, self.device_dict[i].get("mobile")))
-            p.start()
+            if self.device_dict[i].get("status"):
+                log.info(u"Execute device ID：%s" % i)
+                self.device_dict[i]["status"] = False
+                p = Process(target=self.run, args=(i, self.device_dict[i].get("mobile")))
+                p.start()
+            else:
+                log.info(u"Already in execution：%s" % i)
 
     def custom_scheduler(self):
         scheduler = BlockingScheduler()
         scheduler.add_job(self.assembly_devices, 'interval', seconds=2, id='test_job1')
-        scheduler.add_job(self.multi_device_run, 'interval', seconds=3, id='test_job2')
+        scheduler.add_job(self.multi_device_run, 'interval', seconds=2, id='test_job2')
         scheduler.add_job(self.execute_check, 'interval', seconds=40, id='test_job3')
         scheduler.add_job(self.checkapp_monkey, 'interval', seconds=1, id='test_job4')
         scheduler.start()
+
+

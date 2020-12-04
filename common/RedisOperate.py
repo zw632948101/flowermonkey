@@ -6,10 +6,10 @@ from common import log
 
 class Redis(object):
 
-    def __init__(self, host='182.151.60.166', db=1):
+    def __init__(self, host='qa-redis.worldfarm.com', db=1):
         # QA Redis配置
-        if host == '182.151.60.166':
-            pool = redis.ConnectionPool(host=host, port=6479, db=db, password='MiaoShu_2018@dnkj')
+        if host == 'qa-redis.worldfarm.com':
+            pool = redis.ConnectionPool(host=host, port=6379, db=db, password='MiaoShu_2018@dnkj')
         # DEV Redis配置
         elif host == '192.168.62.242':
             pool = redis.ConnectionPool(host=host, port=6379, db=0, password='MiaoShu_2018@dnkj')

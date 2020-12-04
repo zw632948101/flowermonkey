@@ -8,12 +8,14 @@ RUN: &run
     - com.netease.cloudmusic
     - com.meizu.media.music
     - com.android.mediacenter
+    - com.tencent.qqmusic
 flowerChaser:
   <<: *run
   ACTIVITY_NAME:
     - com.dnkj.chaseflower.activity.SplashActivity
   PACKAGE_NAME:
     - com.dnkj.chaseflower
+    - com.dnkj.flowermanager
   DEFAULT_PACKAGE_NAME:
   MOBLIE:
     - 15388126080

@@ -100,13 +100,15 @@ class CheckApp(object):
         """
         log.info("Check if the APP stays on the same page.")
         activity_key = self.device_key + ':activity'
-        activity_name = ''
+        activityname = self.device_key+":activityname"
+        activity_name = self.rd.get(activityname)
         log.info("dumpsys window w | %s \/ | %s name=" % (self.adb.find_util, self.adb.find_util))
         app_activity = self.adb.getCurrentActivity()
         if activity_name != app_activity:
             log.info("Check that the APP does not stay on the same page, and reset the record times.")
             activity_name = app_activity
             self.rd.set(key=activity_key, value=0)
+            self.rd.set(key=activityname, value=app_activity)
         if activity_name == app_activity:
             num = int(self.rd.get(activity_key)) + 1
             self.rd.set(activity_key, num)
@@ -129,9 +131,9 @@ class CheckApp(object):
             if musicapp in config.get('BLACKLIST_PACKAGE'):
                 log.info("Close the application：%s" % musicapp)
                 self.adb.quitApp(musicapp)
-        if self.pname in musicapp_list:
-            log.info("restart：%s" % self.pname)
-            self.open_app()
+        # if self.pname in musicapp_list:
+        #     log.info("restart：%s" % self.pname)
+        #     self.open_app()
 
     def checkapp_monkey(self):
         """

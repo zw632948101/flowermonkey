@@ -97,18 +97,31 @@ class Monkey(object):
         elif self.adb.getCurrentActivity() == "com.dnkj.chaseflower.ui.weather.activity.WeatherHomeActivity":
             log.info("already logged")
 
+    def write_run_packagename_to_txt(self, package_name):
+        """
+        将要运行的包名写入白名单
+        """
+        with open('whitelist.txt', 'w+') as f:
+            f.write(package_name)
+            f.close()
+        self.adb.adb("push whitelist.txt /data/local/tmp")
+
     def monkey_test(self):
         """执行monkey测试"""
         log.info("start to execute monkey")
         package_name = self.access_perform_monkey_package()
         self.r.set(self.package_name, package_name)
+        self.write_run_packagename_to_txt(package_name=package_name)
         seed = random.randint(1000, 100000)
-        error_txt = self.device_id + '_' + str(tt.get_standardtime_by_offset(formats='%m%d%H%M')) + "_error.log"
-        info_txt = self.device_id + '_' + str(tt.get_standardtime_by_offset(formats='%m%d%H%M')) + "_info.log"
+        error_txt = self.device_id + '_' + str(
+            tt.get_standardtime_by_offset(formats='%m%d%H%M')) + "_error.log"
+        info_txt = self.device_id + '_' + str(
+            tt.get_standardtime_by_offset(formats='%m%d%H%M')) + "_info.log"
         self.r.lpush(self.device_key, error_txt, info_txt)
         throttle = random.randint(3, 10) * 100
-        cmd = """adb -s %s shell "monkey -p %s -s  %s --pct-touch 50 --pct-trackball 20 --pct-majornav 10 --pct-appswitch 10 --pct-anyevent 10 --ignore-crashes --ignore-timeouts --ignore-security-exceptions --ignore-native-crashes --monitor-native-crashes -v -v -v --throttle %s %s 2>/sdcard/%s 1>/sdcard/%s"
-              """ % (self.device_id, package_name, seed, throttle, self.event_count, error_txt, info_txt)
+        cmd = """adb -s %s shell "monkey --pkg-whitelist-file /data/local/tmp/whitelist.txt -s %s --pct-touch 50 --pct-trackball 20 --pct-majornav 10 --pct-appswitch 10 --pct-anyevent 10 --ignore-crashes --ignore-timeouts --ignore-security-exceptions --ignore-native-crashes --monitor-native-crashes -vvv --throttle %s %s 2>/sdcard/%s 1>/sdcard/%s"
+              """ % (
+            self.device_id, seed, throttle, self.event_count, error_txt, info_txt)
         log.debug(cmd)
         return cmd
 
@@ -138,7 +151,8 @@ class Monkey(object):
                 else:
                     all_md5[filename] = self.md5sum(file)
 
-    def copy_crash_files(self, crashfiles="/storage/emulated/0/qiansiji/crash", crashlogfile="qiansijiCrashLog"):
+    def copy_crash_files(self, crashfiles="/storage/emulated/0/qiansiji/crash",
+                         crashlogfile="qiansijiCrashLog"):
         """将当天的崩溃日志保存到本地"""
         # 获取崩溃文件列表
         crash_list = str(self.adb.cmd(("shell ls %s" % crashfiles)).stdout.read())
@@ -168,7 +182,7 @@ class Monkey(object):
             crashListSplit = crash_list[i].split("-")
             crashHour = crashListSplit[4] + crashListSplit[5] + crashListSplit[6]
             if now in crash_list[i] and crashHour >= nowHour:
-                self.adb.cmd(" pull %s" % crashfiles + "/%s " % crash_list[i] + " %s" % file_path)
+                self.adb.adb(" pull %s" % crashfiles + "/%s " % crash_list[i] + " %s" % file_path)
                 log.info(" pull %s" % crashfiles + "/%s " % crash_list[i] + " %s" % file_path)
                 # 过滤由于页面没有加载完成而操作的超时问题com.facebook.react.bridge.JSApplicationIllegalArgumentException
                 # 过滤java.lang.OutOfMemoryError: pthread_create (1040KB stack) failed: Try again
@@ -246,8 +260,8 @@ class Monkey(object):
             file_bug_report = open(file_path, "w")
             file_bug_report.close()
         self.adb.shell("bugreport > %s" % file_path)
-        sleep(30)
-        chkbug_report = "java -jar %s %s" % (os.path.join(os.path.dirname(__file__), "chkbugreport.jar"), file_path)
+        chkbug_report = "java -jar %s %s" % (
+            os.path.join(os.path.dirname(__file__), "chkbugreport.jar"), file_path)
         log.info(chkbug_report)
         os.system(chkbug_report)
         print("create bugreport file done")
@@ -272,7 +286,8 @@ class Monkey(object):
             for i in num:
                 for x in range(i - 10, i + 30):
                     tmp_file_read.write(lines[x])
-                tmp_file_read.write("---------------------------------split line------------------------------------")
+                tmp_file_read.write(
+                    "---------------------------------split line------------------------------------")
             f.close()
             tmp_file_read.close()
 
@@ -300,7 +315,6 @@ class Monkey(object):
                 elif connected_devices.index(client) == device_num - 1:
                     return 0
 
-
-if __name__ == '__main__':
-    m = Monkey(5, '7c04826')
-    print(m.Access_perform_monkey_package())
+# if __name__ == '__main__':
+#     m = Monkey(5, '7c04826')
+#     print(m.access_perform_monkey_package())
