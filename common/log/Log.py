@@ -40,7 +40,8 @@ def logger(name=None, level="DEBUG"):
         pass
     if not os.path.exists(current_path):
         os.makedirs(current_path)
-    file_handler = logging.FileHandler(filename=current_path + '%s.log' % name, mode='w', encoding='utf-8')
+    file_handler = logging.FileHandler(filename=current_path + '%s.log' % name, mode='w',
+                                       encoding='utf-8')
 
     # 指定logger输出格式
     formatter = logging.Formatter('%(asctime)s - %(filename)s - line:%(lineno)d - %(name)s - '
@@ -53,5 +54,3 @@ def logger(name=None, level="DEBUG"):
     logger_object.addHandler(file_handler)
 
     return logger_object
-if __name__ == '__main__':
-    log = logger()

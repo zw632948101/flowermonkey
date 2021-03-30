@@ -1,0 +1,14 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/.gitignore
+.idea/flowermonkey.iml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+common/__pycache__/
+common/log/__pycache__/
+logFiles/
+monkey/__pycache__/
+monkey/whitelist.txt
+"monkeyLogs\\/"
+whitelist.txt
