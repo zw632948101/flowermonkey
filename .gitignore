@@ -12,3 +12,4 @@ monkey/__pycache__/
 monkey/whitelist.txt
 "monkeyLogs\\/"
 whitelist.txt
+venv/
