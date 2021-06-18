@@ -1,4 +1,4 @@
-which_project: &which_project flowerChaser
+which_project: &which_project worldFarm
 
 RUN: &run
   projectName: *which_project
@@ -9,13 +9,15 @@ RUN: &run
     - com.meizu.media.music
     - com.android.mediacenter
     - com.tencent.qqmusic
-flowerChaser:
+
+worldFarm:
   <<: *run
+  account:
+    username: 632948101@qq.com
+    password: 123456
   ACTIVITY_NAME:
-    - com.dnkj.chaseflower.activity.SplashActivity
   PACKAGE_NAME:
-    - com.dnkj.chaseflower
-    - com.dnkj.flowermanager
+    - hc.ng.mt
   DEFAULT_PACKAGE_NAME:
   MOBLIE:
     - 15388126080
@@ -27,12 +29,3 @@ flowerChaser:
     - 15388126086
     - 15388126087
     - 15388126088
-
-worldFarm:
-  <<: *run
-  account:
-    username: 632948101@qq.com
-    password: 123456
-  ACTIVITY_NAME: com.dnkj.chaseflower.activity.SplashActivity
-  PACKAGE_NAME: com.dnkj.chaseflower
-

@@ -532,4 +532,4 @@ class ADB(object):
 
 if __name__ == '__main__':
     adb = ADB()
-    print(adb.getRunBackgroundProcess())
+    print(adb.getFocusedPackageAndActivity())

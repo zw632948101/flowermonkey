@@ -66,6 +66,7 @@ class Monkey(object):
         if DEFAULT_PACKAGE_NAME in intersection_package:
             return DEFAULT_PACKAGE_NAME
         return random.choice(intersection_package)
+        # return 'com.samsung.android.app.cocktailbarservice'
 
     def login_app(self, mobile):
         """
@@ -316,5 +317,5 @@ class Monkey(object):
                     return 0
 
 # if __name__ == '__main__':
-#     m = Monkey(5, '7c04826')
-#     print(m.access_perform_monkey_package())
+#     m = Monkey(5, '988954324e414f354e')
+#     print(m.monkey_test())

@@ -92,7 +92,7 @@ class monitorDevice(object):
                 self.device_dict[device]['status'] = True
                 c.pull_monkey_log()
 
-    def run(self, device, mobile):
+    def run(self, device):
         """
         调用执行monkey方法
         :param device: 设备ID
@@ -100,14 +100,14 @@ class monitorDevice(object):
         :return:
         """
         e = Execommand(event_count=50000, device=device)
-        e.run(mobile)
+        e.run()
 
     def multi_device_run(self):
         for i in self.devicelist:
             if self.device_dict[i].get("status"):
                 log.info(u"Execute device ID：%s" % i)
                 self.device_dict[i]["status"] = False
-                p = Process(target=self.run, args=(i, self.device_dict[i].get("mobile")))
+                p = Process(target=self.run, args=(i, ))
                 p.start()
             else:
                 log.info(u"Already in execution：%s" % i)

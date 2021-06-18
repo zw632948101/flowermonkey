@@ -27,13 +27,17 @@ class Execommand(Monkey):
         super(Execommand, self).__init__(event_count, device)
         self.process = None
 
-    def run(self, mobile):
+    def run(self):
         def target():
             log.info('Thread started')
             sleep(2)
+            log.info('Disable notification bar')
+            self.adb.shell('settings put global policy_control immersive.full=*')
             self.process = subprocess.Popen(self.monkey_test(), shell=True, stdout=subprocess.PIPE)
             out, err = self.process.communicate()
             log.info('Thread finished')
+            log.info('Enable notification bar')
+            self.adb.shell('settings put global policy_control null')
             return out
 
         if not self.ca.checkapp_monkey():
